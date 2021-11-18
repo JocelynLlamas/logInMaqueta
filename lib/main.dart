@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maquetacion/pages/bienvenido.dart';
 import 'package:maquetacion/pages/registro.dart';
 
 void main() {
@@ -53,7 +54,7 @@ Widget cuerpo(BuildContext context){
             campoUsuario(),
             campoPassword(),
             const SizedBox(height: 20),
-            botonEntrar(),
+            botonEntrar(context),
             const SizedBox(height: 16),
             separacion(),
             const SizedBox(height: 16),
@@ -169,14 +170,19 @@ Widget campoPassword(){
   );
 }
 
-Widget botonEntrar(){
+Widget botonEntrar(BuildContext context){
   return FlatButton(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(18.0),
     ),
     color: Color.fromRGBO(116,28,188,1),
     padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
-    onPressed: (){},
+    onPressed: ()=>{
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context)=> const Bienvenido()),
+      )
+    },
     child: Text("Iniciar Sesión",
 
       style: GoogleFonts.poppins(

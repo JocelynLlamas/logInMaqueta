@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'bienvenido.dart';
+
 class Registro extends StatelessWidget {
   const Registro({Key? key}) : super(key: key);
 
@@ -9,18 +11,12 @@ class Registro extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Registro",
-          style: GoogleFonts.poppins(
-            textStyle: const TextStyle(
-              color: Colors.white,
-              fontSize: 25.0,
-              fontWeight: FontWeight.w500,
-            ),),
-        ),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(116,28,188,1),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
+            color: Colors.black,
             onPressed: ()=>{
               Navigator.pop(context)
             },
@@ -49,7 +45,7 @@ Widget cuerpo(BuildContext context){
               campoEmail(),
               campoPassword(),
               const SizedBox(height: 20),
-              botonContinuar(),
+              botonContinuar(context),
             ],
           ),
       ),
@@ -194,14 +190,19 @@ Widget campoPassword(){
   );
 }
 
-Widget botonContinuar(){
+Widget botonContinuar(BuildContext context){
   return FlatButton(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(18.0),
     ),
     color: Color.fromRGBO(116,28,188,1),
     padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
-    onPressed: (){},
+    onPressed: ()=>{
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context)=> const Bienvenido()),
+      )
+    },
     child: Text("Continuar",
 
       style: GoogleFonts.poppins(
