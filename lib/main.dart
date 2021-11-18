@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maquetacion/pages/registro.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,37 +34,33 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
 
-      body: cuerpo(),
+      body: cuerpo(context),
     );
   }
 }
 
-Widget cuerpo(){
-  return Container(
-
+Widget cuerpo(BuildContext context){
+  return SingleChildScrollView(
     child: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          logo(),
-          nombre(),
-          const SizedBox(height: 15),
-          texto(),
-          campoUsuario(),
-          campoPassword(),
-          const SizedBox(height: 20),
-          botonEntrar(),
-          const SizedBox(height: 16),
-          separacion(),
-          const SizedBox(height: 16),
-          botonGoogle(),
-          const SizedBox(height: 10),
-          botonFacebook(),
-          const SizedBox(height: 16),
-          noTienesCuentaTxt(),
-          botonRegistro(),
-        ],
-      )
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const SizedBox(height: 80),
+            logo(),
+            nombre(),
+            const SizedBox(height: 15),
+            texto(),
+            campoUsuario(),
+            campoPassword(),
+            const SizedBox(height: 20),
+            botonEntrar(),
+            const SizedBox(height: 16),
+            separacion(),
+            const SizedBox(height: 16),
+            noTienesCuentaTxt(),
+            botonRegistro(context),
+          ],
+        )
     ),
   );
 }
@@ -200,64 +197,12 @@ Widget separacion(){
         style: GoogleFonts.poppins(
           textStyle: const TextStyle(
             color: Colors.grey,
-            fontSize: 13.0,
+            fontSize: 15.0,
             fontWeight: FontWeight.w500,
           ),),
       ),
       Expanded(child: Divider()),
     ],
-  );
-}
-
-Widget botonGoogle(){
-  return FlatButton(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(18.0),
-    ),
-    color: Color.fromRGBO(239, 235, 235, 1),
-    padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
-    onPressed: (){},
-    child: Row(
-      mainAxisSize: MainAxisSize.min, //PARA QUE NO SE VEA TAN GRANDE
-      children: [
-        Text("Continuar con ",
-          style: GoogleFonts.poppins(
-            textStyle: const TextStyle(
-              color: Colors.black,
-              fontSize: 13.0,
-              fontWeight: FontWeight.w500,
-            ),),
-        ),
-        SizedBox(width: 10),
-        Image.asset("images/Logo Google.png")
-      ],
-    ),
-  );
-}
-
-Widget botonFacebook(){
-  return FlatButton(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(18.0),
-    ),
-    color: Color.fromRGBO(239, 235, 235, 1),
-    padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
-    onPressed: (){},
-    child: Row(
-      mainAxisSize: MainAxisSize.min, //PARA QUE NO SE VEA TAN GRANDE
-      children: [
-        Text("Continuar con ",
-          style: GoogleFonts.poppins(
-            textStyle: const TextStyle(
-              color: Colors.black,
-              fontSize: 13.0,
-              fontWeight: FontWeight.w500,
-            ),),
-        ),
-        SizedBox(width: 10),
-        Image.asset("images/Logo Fb.png")
-      ],
-    ),
   );
 }
 
@@ -270,27 +215,32 @@ Widget noTienesCuentaTxt(){
 
         textStyle: const TextStyle(
           color: Colors.black,
-          fontSize: 13.0,
+          fontSize: 17.0,
           fontWeight: FontWeight.w500,
         ),),
     ),
   );
 }
 
-Widget botonRegistro(){
+Widget botonRegistro(BuildContext context){
   return FlatButton(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(18.0),
     ),
     color: Color.fromRGBO(116,28,188,1),
     padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
-    onPressed: (){},
+    onPressed: ()=>{
+      Navigator.push(
+          context,
+        MaterialPageRoute(builder: (context)=> const Registro()),
+      )
+    },
     child: Text("Regístrate",
 
       style: GoogleFonts.poppins(
         textStyle: const TextStyle(
           color: Colors.white,
-          fontSize: 13.0,
+          fontSize: 17.0,
           fontWeight: FontWeight.w500,
         ),),
     ),
